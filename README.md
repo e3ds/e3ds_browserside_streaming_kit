@@ -1,8 +1,8 @@
 clone the repo.
 
-lunch main.html
+launch main.html
 
-in scripts/integrator.js  you need  to modify  3 informations to make it work with your app:
+in scripts/integrator.js  you need  to modify  3 information to make it work with your app:
 
 var owner = "put your user name "
 

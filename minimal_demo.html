@@ -1,58 +1,46 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
+  <style>
+  </style>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="upgrade-insecure-requests"
+    />
+    <!-- <base href="/"> -->
+    <!-- disable this line for streaming ui -->
 
+    <script type="text/javascript">
+      var sendToUnreal = undefined;
+      var e3ds_controller = {
+        //"domain": "connector.eagle3dstreaming.com",//"put your CP url if you have a special one "
+        userName: "demo", //"put your user name "
+        appName: "E3DSFeaturesTemplate", //"put your app name"
+        configurationName: "E3DS-Iframe-Demo", //"put your config name"
+      };
+    </script>
 
-   <style>
-     <!-- add your style info here -->
-   </style>
-   <head>
-      <!-- Required meta tags -->
-      <meta charset="utf-8">
-      <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-      <!-- <base href="/"> --> <!-- disable this line for streaming ui -->
+    <script type="text/javascript" src="dist/e3dsCore.min.js"></script>
 
-	  
-	  
-      <script type='text/javascript'>
-         var sendToUnreal=undefined
-		 var e3ds_controller = 
-				{
-					
-				  //"domain": "connector.eagle3dstreaming.com",//"put your CP url if you have a special one "
-				  "userName": "demo",//"put your user name "
-					"appName": "E3DSFeaturesTemplate", //"put your app name"
-					"configurationName": "E3DS-Iframe-Demo",//"put your config name"
-					
-				}
+    <link type="text/css" rel="stylesheet" href="assets/public/player.css" />
 
-      </script>
-	  
-	 
-	    <script type="text/javascript" src="dist/e3dsCore.min.js"></script>
-		
-		
-	<link type="text/css" rel="stylesheet" href="assets/public/player.css">
-	   
-	   
-      <script type="text/javascript" src="src/adapter-latest.js"></script>
-   </head>
-   <!-- <body onload="load()" onmousedown="unMuteAudio4AutoPlay()" > -->
-   <body>
-      <div id="playerUI"  style="display: block;" >
-        
-		<div id="player"  style="display: block;">
-            <video id="streamingVideo" playsinline >
-               
-               <source src="" type="video/mp4">
-            </video>
-         </div>
-
+    <script type="text/javascript" src="src/adapter-latest.js"></script>
+  </head>
+  <!-- <body onload="load()" onmousedown="unMuteAudio4AutoPlay()" > -->
+  <body>
+    <div id="playerUI" style="display: block">
+      <div id="player" style="display: block">
+        <video id="streamingVideo" playsinline>
+          <source src="" type="video/mp4" />
+        </video>
       </div>
-	
-      <canvas id="canvas">
-	 <!--  captureScreenShot() using canvas. before rmeoveing this element we need to adopt captureScreenShot(). 
-	  otherwise captureScreenShot() will strop working -->
-	  </canvas>
+    </div>
 
-   </body>
+    <canvas id="canvas">
+      <!--  captureScreenShot() using canvas. before rmeoveing this element we need to adopt captureScreenShot(). 
+	  otherwise captureScreenShot() will strop working -->
+    </canvas>
+  </body>
 </html>

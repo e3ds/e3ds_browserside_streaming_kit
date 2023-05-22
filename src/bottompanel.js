@@ -12,6 +12,21 @@ function hidemenuAtStart() {
   e3ds_controls_open_state = false
 }
 
+function toggleMenu() {
+  const elements = document.getElementsByClassName("options-container");
+  elements[0].classList.toggle("isVisible");
+}
+
+function showAnnouncement() {
+  const elements = document.getElementsByClassName("announcement");
+  elements[0].classList.add("isVisible");
+}
+
+function removeAnnouncement() {
+  const elements = document.getElementsByClassName("announcement");
+  elements[0].classList.remove("isVisible");
+}
+
 hidemenuAtStart()
 
 function openState(panelPosition = "right") {

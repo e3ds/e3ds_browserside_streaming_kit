@@ -2,45 +2,36 @@
 <html lang="en">
    <style>
       #popupForPasswordToStart {
-      display:none;
-      border:1px solid black; 
-      width:50%; 
-      height:200px;
-      background:#efefef;
-      margin: auto;
-      width: 60%;
-      top: 50%;
-      left: 50%;
-      padding: 10px;
+         display:none;
+         border:1px solid black;
+         height:200px;
+         background:#efefef;
+         margin: auto;
+         width: 60%;
+         top: 50%;
+         left: 50%;
+         padding: 10px;
       }
    </style>
    <head>
       <!-- Required meta tags -->
       <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
       <!-- <base href="/"> --> <!-- disable this line for streaming ui -->
+      <link href="https://fonts.cdnfonts.com/css/segoe-ui-4" rel="stylesheet">
       <script type="text/javascript" src="src/jquery.min.js"></script>
       <script type="text/javascript" src="src/toast-alert.js"></script>
       <script type='text/javascript'>
-          //do your coding here
-		  
-		  
       </script>
-	  
-	  
 	    <!-- add preLoadScripts.js which contains all the dinafiantion which will be requyired  by e3dsCore.min.js -->
 	    <script type="text/javascript" src="scripts_demo/preLoadScripts.js"></script>
 	    <script type="text/javascript" src="dist/e3dsCore.min.js"></script>
-		
-		
-	 	 
       <style>
       </style>
-     
-      
-	 
 	<!-- comment out next two lines  in case if u dont want voip-->
       <link type="text/css" rel="stylesheet" href="assets/css/voip.css"/>
+      <link type="text/css" rel="stylesheet" href="assets/css/sidebar-options.css"/>
       <script type="text/javascript" src="src/voip.js"></script>
      
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css">
@@ -57,6 +48,45 @@
    <!-- <body onload="load()" onmousedown="unMuteAudio4AutoPlay()" > -->
    <body>
       <div id="playerUI"  style="display: block;" >
+         <div class="options-container">
+            <div class="sidebar-options">
+              <div class="sidebar-header-wrapper">
+                <img class="sidebar-complete-logo" src="./assets/complete_logo.svg" alt="logo"/>
+              </div>
+              <ul>
+                <li><a href="#">Open URL</a></li>
+                <li><a href="#">Open Mail App</a></li>
+                <li><a href="#">Open Call</a></li>
+                <li><a href="#" onclick="showAnnouncement()">Open Announcement</a></li>
+                <li><a href="#">Toggle Browser Mouse</a></li>
+                <li><a href="#">Increase Session Timer</a></li>
+                <li><a href="#">Get User Info</a></li>
+                <li><a href="#">Get User Device Info</a></li>
+                <li><a href="#">Video Player</a></li>
+              </ul>
+            </div>
+            <div class="content">
+              <div class="announcement">
+                <div>
+                  Lorem ipsum dolor sit amet. Et recusandae neque eum voluptate 
+                  delectus qui reiciendis molestiae! Sit aliquam quisquam sit libero 
+                  commodi 33 distinctio illo eum ipsa laudantium. Id placeat 
+                  necessitatibus sed tenetur iste aut optio culpa.
+                </div>
+                <div class="close-announcement" onclick="removeAnnouncement()">
+                  x
+                </div>
+              </div>
+              <div class="voip-wrapper">
+                  <div class="voip-container">
+                     <div><img src="./assets/images/voipspeakeron.png" alt="speaker-on-icon" /></div>
+                     <div class="username-wrapper"><p>USERNAME1</p><p>(you) (guest)</p></div>
+                     <div><img src="./assets/images/voipmicOff.png" alt="speaker-on-icon" /></div>
+                     <div><img src="./assets/images/voipLeave call.png" alt="speaker-on-icon" /></div>
+                  </div>
+              </div>
+            </div>
+          </div>
          <div id="player"  style="display: block;">
             <video id="streamingVideo" playsinline >
                <!--
@@ -85,13 +115,18 @@
             </div>
          </div>
          <!-- <div id="e3ds_bottom_panelObj" style="display: block;z-index: 100;" class='e3ds_bottom_panel'  > -->
-         <div id="e3ds_bottom_panelObj" style="display: none;" class='e3ds_bottom_panel'  >
+         <div id="e3ds_bottom_panelObj" style="display: none;" class='e3ds_bottom_panel' onclick="toggleMenu()">
             <div class='e3ds_bottom_panel_controls' id="e3ds_bottom_panel_controlsObj" >
-               <button   id="screenshot-img" ><img src='./assets/images/camera.svg' /></button>
-               <button    id="AudioBtn"  >
-               <img id="AudioBtnImg" src='./assets/images/unmute.svg' />   </button>
+               <button id="screenshot-img">
+                  <img src='./assets/images/camera.svg'/>
+               </button>
+               <button id="AudioBtn">
+                  <img id="AudioBtnImg" src='./assets/images/unmute.svg' />
+               </button>
                <input aria-label="Current Time" type="range" id="Volumebar" value="1" aria-valuetext="13:19" min="0" max="1" step="0.1"  >
-               <button id="fullscreen-img"  ><img src='./assets/images/fullscreen.svg' /></button>
+               <button id="fullscreen-img">
+                  <img src='./assets/images/fullscreen.svg' />
+               </button>
             </div>
             <div class='e3ds_control_toggle' id="e3ds_control_toggleObj" >
                <span class='e3ds_control_toggle_icon' id="e3ds_control_toggle_iconObj" ><img src='./assets/images/gear.svg' /></span>
@@ -102,7 +137,7 @@
             <div id="voipControlPanel" class='e3ds_bottom_panel_controls_left left'  >
                <button id="create_room" style="display: none;" class="btn btn-success" >create room</button>
                <button id="join_room" style="display: none;" class="btn btn-success" >join room</button>
-               <button  class="voip-icon" style="display: none;" id="make-voip-call">       </button>
+               <button  class="voip-icon" style="display: none;" id="make-voip-call"></button>
                <button  class="voip-icon">
                <img id="make-voip-callImg" src='./assets/images/voipcall.png'  />
                </button>
