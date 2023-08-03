@@ -1,0 +1,19 @@
+{
+  "name": "secure-streaming-ui",
+  "version": "1.0.0",
+  "description": "static file server for streaming ui with express js",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "env-linux": "export $(cat .env | xargs) && env",
+    "start-linux": "export $(cat .env | xargs) && npm start",
+    "env-windows": "(for /F \"tokens=*\" %i in (.env) do set %i)",
+    "start-windows": "(for /F \"tokens=*\" %i in (.env) do set %i) && npm start"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
